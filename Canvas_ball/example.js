@@ -2,13 +2,8 @@ if ( !window.requestAnimationFrame ) {
 
     window.requestAnimationFrame = ( function() {
         return window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
             function(  callback, element ) {
-
                 window.setTimeout( callback, 1000 / 60 );
-
             };
 
     })();
@@ -40,7 +35,7 @@ function balls(x, y, r){
     this.x = x;
     this.y = y;
     this.r = r;
-    this.draw = function(color){
+    this.paint = function(color){
         context.fillStyle = color;
         context.beginPath();
         context.arc( this.x, this.y, this.r, 0, Math.PI * 2, true );
@@ -53,7 +48,7 @@ function field(x, y, width, height){
     this.y = y;
     this.width = width;
     this.height = height;
-    this.draw = function(color){
+    this.paint = function(color){
         context.fillStyle = color;
         context.fillRect( this.x, this.y, this.width, this.height );
     }
@@ -74,8 +69,8 @@ function updateItems()
 }
 
 function draw() {
-    map.draw("#000");
-    ball.draw("#f00");
+    map.paint("#000");
+    ball.paint("#f00");
     updateItems();
 
 }
